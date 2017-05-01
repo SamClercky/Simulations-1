@@ -18,7 +18,7 @@ public slots:
 signals:
     void GotPoints(const QVector<double> x, const QVector<double> y);
     void GotMax(const double maxx, const double maxy);
-    void DataReady();
+    void DataReady(int teProducerenKaarten);
 };
 
 #endif // GETDATAINTHREAD_H

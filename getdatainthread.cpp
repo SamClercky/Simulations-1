@@ -30,5 +30,5 @@ void GetDataInThread::StartGettingData(int aantalKeer, int aantalPers, int aanta
         emit this->GotPoints(x, y);
     }
     emit this->GotMax(maxx, maxy);
-    emit this->DataReady();
+    emit this->DataReady(generator.getTeProducerenKaarten());
 }

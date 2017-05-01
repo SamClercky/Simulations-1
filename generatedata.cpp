@@ -10,6 +10,7 @@ GenerateData::GenerateData(int aantalKeer, int aantalPersonen, int aantalKaarten
     this->aantalKeer = aantalKeer;
     this->aantalPersonen = aantalPersonen;
     this->aantalKaarten = aantalKaarten;
+    this->teProducerenKaarten = 0;
 
     qDebug() << "Init GenerateData: aantalKeer: " << this->aantalKeer
              << " AantalPersonen: " << this->aantalPersonen
@@ -27,7 +28,7 @@ int GenerateData::OnePerson()
         if (janee == 1) {
             i++;
         }
-
+        this->teProducerenKaarten++;
         aantal++;
     }
     qDebug() << aantal;
@@ -55,7 +56,13 @@ QVector<int> GenerateData::prepare(QVector<int> v)
 int GenerateData::GenerateRandom(int max)
 {
     qDebug() << "RAND_MAX: " << RAND_MAX;
-    double result = qrand() * max / RAND_MAX;
+    double result = qrand();
+    qDebug() << result;
+    result *= max;
+    result /= RAND_MAX;
     return result;
+}
+int GenerateData::getTeProducerenKaarten() {
+    return this->teProducerenKaarten;
 }
 

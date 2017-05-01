@@ -9,11 +9,13 @@ class GenerateData
 public:
     GenerateData(int aantalKeer = 0, int aantalPersonen = 0, int aantalKaarten = 0);
     QVector<QVector<int>> Generate();
+    int getTeProducerenKaarten();
 
 private:
     int aantalKeer = 0;
     int aantalPersonen = 0;
     int aantalKaarten = 0;
+    int teProducerenKaarten = 0;
 
     int OnePerson();
     int GenerateRandom(int max = RAND_MAX);
