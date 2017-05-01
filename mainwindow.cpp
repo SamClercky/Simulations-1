@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QDebug>
 #include <QThread>
+#include <string>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -78,13 +79,14 @@ void MainWindow::GotGraphPoints(QVector<double> x, QVector<double> y) {
     customPlot->graph(id)->setData(x, y);
     customPlot->replot();
 }
-void MainWindow::DataReady() {
+void MainWindow::DataReady(int teProducerenKaarten) {
     ui->pushButton->setEnabled(true);
     ui->aantalKaart->setEnabled(true);
     ui->aantalKeer->setEnabled(true);
     ui->aantalPers->setEnabled(true);
 
-    ui->status->setText("Ready to simulate");
+    qDebug() << teProducerenKaarten;
+    ui->status->setText("Ready to simulate. Distributed carts: " + QString::number(teProducerenKaarten));
 }
 bool MainWindow::isInputValid(int check) {
     return check > 0;

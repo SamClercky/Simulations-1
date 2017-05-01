@@ -24,7 +24,7 @@ signals:
 public slots:
     void GotGraphPoints(QVector<double> x, QVector<double> y);
     void GotMax(double maxx, double maxy);
-    void DataReady();
+    void DataReady(int teProducerenKaarten);
 
 private slots:
     void on_pushButton_clicked();
