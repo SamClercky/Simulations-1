@@ -39,7 +39,6 @@ void MainWindow::on_pushButton_clicked()
             isInputValid(ui->aantalPers->text().toInt()) &&
             isInputValid(ui->aantalKaart->text().toInt())) {
         auto *customPlot = ui->Chart;
-        // remove all plots
         for(int i = 0; i < customPlot->graphCount(); i++) {
             customPlot->removeGraph(i);
         }
@@ -52,14 +51,16 @@ void MainWindow::on_pushButton_clicked()
         ui->aantalKeer->setEnabled(false);
         ui->aantalPers->setEnabled(false);
 
+        qDebug() << "<======================================================>";
+
         ui->status->setText("Processing...");
-        qDebug("emiting");
-        emit MainWindow::StartGettingData(
-                    ui->aantalKeer->text().toInt(),
-                    ui->aantalPers->text().toInt(),
-                    ui->aantalKaart->text().toInt()
-         );
-        qDebug("emited");
+        for(int i = 0; i < ui->aantalKeer->text().toInt(); i++) {
+            emit MainWindow::StartGettingData(
+                        1,
+                        ui->aantalPers->text().toInt(),
+                        ui->aantalKaart->text().toInt()
+            );
+        }
     } else {
         ui->status->setText("Invalid input: input must be bigger than 0");
     }
@@ -85,8 +86,8 @@ void MainWindow::DataReady(int teProducerenKaarten) {
     ui->aantalKeer->setEnabled(true);
     ui->aantalPers->setEnabled(true);
 
-    qDebug() << teProducerenKaarten;
-    ui->status->setText("Ready to simulate. Distributed carts: " + QString::number(teProducerenKaarten));
+    qDebug() << "Te produceren kaarten: " << teProducerenKaarten;
+    ui->status->setText("Distributed carts: " + QString::number(teProducerenKaarten));
 }
 bool MainWindow::isInputValid(int check) {
     return check > 0;

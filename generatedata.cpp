@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <QVector>
 #include <QList>
-#include <QDebug>
 #include "generatedata.h"
 
 GenerateData::GenerateData(int aantalKeer, int aantalPersonen, int aantalKaarten)
@@ -12,9 +11,9 @@ GenerateData::GenerateData(int aantalKeer, int aantalPersonen, int aantalKaarten
     this->aantalKaarten = aantalKaarten;
     this->teProducerenKaarten = 0;
 
-    qDebug() << "Init GenerateData: aantalKeer: " << this->aantalKeer
-             << " AantalPersonen: " << this->aantalPersonen
-             << " AantalKaarten: " << this->aantalKaarten;
+//    qDebug() << "Init GenerateData: aantalKeer: " << this->aantalKeer
+//             << " AantalPersonen: " << this->aantalPersonen
+//             << " AantalKaarten: " << this->aantalKaarten;
 }
 int GenerateData::OnePerson()
 {
@@ -22,7 +21,6 @@ int GenerateData::OnePerson()
     int aantal = 0;
     while(i <= this->aantalKaarten) {
         int janee = this->GenerateRandom(2);
-        qDebug() << janee;
         if(janee == 2) janee = 1;
 
         if (janee == 1) {
@@ -31,7 +29,6 @@ int GenerateData::OnePerson()
         this->teProducerenKaarten++;
         aantal++;
     }
-    qDebug() << aantal;
     return aantal;
 }
 QVector<QVector<int>> GenerateData::Generate()
@@ -55,9 +52,7 @@ QVector<int> GenerateData::prepare(QVector<int> v)
 }
 int GenerateData::GenerateRandom(int max)
 {
-    qDebug() << "RAND_MAX: " << RAND_MAX;
     double result = qrand();
-    qDebug() << result;
     result *= max;
     result /= RAND_MAX;
     return result;

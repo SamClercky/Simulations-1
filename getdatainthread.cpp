@@ -15,7 +15,7 @@ void GetDataInThread::StartGettingData(int aantalKeer, int aantalPers, int aanta
      );
 
     QVector<QVector<int>> data = generator.Generate();
-    qDebug() << data;
+    qDebug() << "Gegevens 1 keer draaien: " << data;
     double maxy = 1;
     double maxx = 1;
     for (int i = 0; i < data.count(); i++) {
@@ -25,7 +25,6 @@ void GetDataInThread::StartGettingData(int aantalKeer, int aantalPers, int aanta
             y[d] = data.at(i).at(d);
             maxy = qMax(maxy, y[d]);
             maxx = qMax(maxx, x[d]);
-            qDebug() << "x: " << x[d] << ", y: " << y[d];
         }
         emit this->GotPoints(x, y);
     }
