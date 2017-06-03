@@ -29,11 +29,19 @@ public slots:
 private slots:
     void on_pushButton_clicked();
 
+    void on_GetCsvBtn_clicked();
+
 private:
     bool isInputValid(int check);
+    int calcProCent(int toCent);
+    int calcMedian(QList<int> lijst);
     QThread workerThread;
     Ui::MainWindow *ui;
     int GraphId = 0;
+    int aantalOntvangen = 0;
+    int aantalVerzonden = 0;
+    QList<int> distributedCarts;
+    QList<QList<double>> carts;
 };
 
 #endif // MAINWINDOW_H
